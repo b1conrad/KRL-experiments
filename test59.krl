@@ -1,5 +1,6 @@
 ruleset test59 {
   meta {
+    use module io.picolabs.wrangler alias wrangler
     use module io.picolabs.subscription alias subs
     shares subs_as_children
   }
