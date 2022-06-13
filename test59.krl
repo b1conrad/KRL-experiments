@@ -19,7 +19,7 @@ eci
       subs:established("Rx_role","participant list")
         .filter(function(s){s{"Tx_role"}=="participant"})
         .map(function(s){
-            {"eci":s{"Tx"}, "name":s{"Rx"}.map(participant_name)}
+            {"eci":s{"Tx"}, "name":s{"Rx"}.participant_name()}
           })
     }
   }
