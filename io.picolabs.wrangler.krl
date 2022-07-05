@@ -463,6 +463,7 @@ ruleset io.picolabs.wrangler {
     select when wrangler ready_for_deletion
     pre {
       my_eci = channels("system,child").head().get("id")
+      co_id = event:attr("co_id").klog("XXXXX co_id XXXXX")
     }
     if my_eci then
       event:send({"eci":ent:parent_eci,
