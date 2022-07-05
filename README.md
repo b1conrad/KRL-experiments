@@ -15,3 +15,6 @@ The fix is in the `io.picolabs.pico-engine-ui` ruleset.
 Issue [#612](https://github.com/Picolab/pico-engine/issues/612)
 entitled "Need better isolation between rulesets when performing wrangler operations"
 needs a fix.
+
+The fix is in the `io.picolabs.wrangler` ruleset.
+
