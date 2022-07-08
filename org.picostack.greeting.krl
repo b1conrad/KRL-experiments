@@ -61,7 +61,7 @@ I would like to be called <input name="name">.<br>
   rule initializePico {
     select when org_picostack_greeting factory_reset
     fired {
-      clear ent:var
+      clear ent:name
     }
   }
 }
