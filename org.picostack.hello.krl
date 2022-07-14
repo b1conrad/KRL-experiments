@@ -54,4 +54,11 @@ Hello, #{ent:name.defaultsTo("world")}!
       raise org_picostack_hello event "name_saved" attributes event:attrs
     }
   }
+  rule redirectBack {
+    select when org_picostack_hello name_saved
+    pre {
+      referrer = event:attr("_headers").get("referer") // [sic]
+    }
+    if referrer then send_directive("_redirect",{"url":referrer})
+  }
 }
