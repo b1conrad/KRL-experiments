@@ -23,7 +23,7 @@ Hello, #{ent:name.defaultsTo("world")}!
 <button type="submit">Submit</button>
 </form>
 >> | "")
-<h2>Technical details</h2>
+      + <<<h2>Technical details</h2>
 <pre>#{url}</pre>
 >>
       + html:footer()
