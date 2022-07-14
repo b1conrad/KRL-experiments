@@ -11,6 +11,9 @@ ruleset org.picostack.hello {
       html:header("manage greetings","",null,null,_headers)
       + <<
 <h1>Manage greetings</h1>
+<p>
+Hello, #{ent:name}!
+</p>
 >>
       + html:footer()
     }
