@@ -12,7 +12,7 @@ ruleset org.picostack.hello {
       + <<
 <h1>Manage greetings</h1>
 <p>
-Hello, #{ent:name}!
+Hello, #{ent:name.defaultsTo("world")}!
 </p>
 >>
       + html:footer()
