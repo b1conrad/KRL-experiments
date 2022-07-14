@@ -47,6 +47,12 @@ Hello, #{ent:name.defaultsTo("world")}!
     foreach wrangler:channels(["greetings"]).reverse().tail() setting(chan)
     wrangler:deleteChannel(chan.get("id"))
   }
+  rule initializePico {
+    select when org_picostack_hello factory_reset
+    fired {
+      clear ent:name
+    }
+  }
   rule acceptAndStoreName {
     select when org_picostack_hello name_given
       name re#(.+)# setting(new_val)
