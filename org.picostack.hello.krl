@@ -15,7 +15,7 @@ ruleset org.picostack.hello {
 <p>
 Hello, #{ent:name.defaultsTo("world")}!
 </p>
-      + (ent:VAR.isnull() => <<
+      + (ent:name.isnull() => <<
 <p>How do you wish to be greeted?</p>
 <form action="#{url}">
 <input name="name"><br>
