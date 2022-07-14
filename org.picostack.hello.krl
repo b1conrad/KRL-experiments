@@ -8,12 +8,15 @@ ruleset org.picostack.hello {
   global {
     event_domain = "org_picostack_hello"
     greeting = function(_headers){
+      url = <<#{meta:host}/sky/event/#{meta:eci}/none/#{event_domain}/name_given>>
       html:header("manage greetings","",null,null,_headers)
       + <<
 <h1>Manage greetings</h1>
 <p>
 Hello, #{ent:name.defaultsTo("world")}!
 </p>
+<h2>Technical details</h2>
+<pre>#{url}</pre>
 >>
       + html:footer()
     }
