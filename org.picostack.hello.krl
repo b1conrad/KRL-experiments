@@ -25,6 +25,7 @@ Hello, #{ent:name}!
 >>)
       + <<<h2>Technical details</h2>
 <pre>#{url}</pre>
+<button onclick="location='#{url.replace("name_given","form_wanted")}'">Clear name</button>
 >>
       + html:footer()
     }
@@ -49,6 +50,7 @@ Hello, #{ent:name}!
   }
   rule initializePico {
     select when org_picostack_hello factory_reset
+             or org_picostack_hello form_wanted
     fired {
       clear ent:name
     }
@@ -63,6 +65,7 @@ Hello, #{ent:name}!
   }
   rule redirectBack {
     select when org_picostack_hello name_saved
+             or org_picostack_hello form_wanted
     pre {
       referrer = event:attr("_headers").get("referer") // [sic]
     }
