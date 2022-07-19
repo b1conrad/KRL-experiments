@@ -74,6 +74,7 @@ e.x. guesses
 <script type="text/javascript">
 function shwk(event){
   alert("shwk");
+  alert(event.target.href);
 }
 </script>
 >>
