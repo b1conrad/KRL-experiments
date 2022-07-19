@@ -75,7 +75,7 @@ e.x. guesses
 function shwk(event){
   alert("shwk");
   alert(event.target.href);
-  var xhr = XMLHttpRequest;
+  var xhr = new XMLHttpRequest;
   xhr.onload = function(){
     var data = xhr.response;
     if(data && data.length){
