@@ -71,6 +71,11 @@ e.x. guesses
 <br>
 <button type="submit">Submit</button>
 </form>
+<script type="text/javascript">
+function shwk(event){
+  alert("shwk");
+}
+</script>
 >>
       + html:footer()
     }
