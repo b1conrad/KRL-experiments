@@ -115,14 +115,11 @@ const the_modal_pre = document.getElementById('modal-pre');
 const the_modal = document.getElementById('modal');
 const the_shadow = document.getElementById('shadow');
 function shwk(event){
-  alert("shwk");
-  alert(event.target.href);
   var xhr = new XMLHttpRequest;
   xhr.onload = function(){
     var data = xhr.response;
     if(data && data.length){
-      alert(data);
-      the_modal_pre.textContent = j;
+      the_modal_pre.textContent = data;
       the_modal.classList.add('active');
       the_shadow.classList.add('active');
     }
