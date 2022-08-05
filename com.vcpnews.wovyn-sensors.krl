@@ -14,6 +14,7 @@ ruleset com.vcpnews.wovyn-sensors {
 >>
       + html:footer()
     }
+    url = "https://byname.byu.edu:8080/sky/event/cl6gkrzzt04mpjbpb7hfx3ufp/hb/com_vcpnews_wovyn_sensors/heartbeat"
   }
   rule initialize {
     select when wrangler ruleset_installed where event:attr("rids") >< meta:rid
@@ -32,5 +33,12 @@ ruleset com.vcpnews.wovyn-sensors {
     select when com_vcpnews_wovyn_sensors factory_reset
     foreach wrangler:channels(["wovyn_sensors"]).reverse().tail() setting(chan)
     wrangler:deleteChannel(chan.get("id"))
+  }
+  rule forwardHeartbeat {
+    select when com_vcpnews_wovyn_sensors heartbeat
+    http:post(url,json=event:attrs) setting(response)
+    fired {
+      ent:lastResponse := response
+    }
   }
 }
