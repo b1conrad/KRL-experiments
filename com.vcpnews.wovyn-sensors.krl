@@ -2,17 +2,12 @@ ruleset com.vcpnews.wovyn-sensors {
   meta {
     name "wovyn_sensors"
     use module io.picolabs.wrangler alias wrangler
-    use module html
     shares wovyn_sensor
   }
   global {
     event_domain = "com_vcpnews_wovyn_sensors"
     wovyn_sensor = function(_headers){
-      html:header("manage wovyn_sensors","",null,null,_headers)
-      + <<
-<h1>Manage wovyn_sensors</h1>
->>
-      + html:footer()
+      ent:lastResponse
     }
     url = "https://byname.byu.edu:8080/sky/event/cl6gkrzzt04mpjbpb7hfx3ufp/hb/com_vcpnews_wovyn_sensors/heartbeat"
   }
