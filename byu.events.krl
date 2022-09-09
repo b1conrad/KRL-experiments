@@ -3,7 +3,7 @@ ruleset byu.events {
     name "byu_events"
     use module io.picolabs.wrangler alias wrangler
     use module html
-    shares byu_events, category, byu_event
+    shares byu_events, category
   }
   global {
     event_domain = "byu_events"
@@ -13,8 +13,8 @@ ruleset byu.events {
         ent:categories{k} >< id
       }).head()
     }
-    byu_events = function(_headers){
-      html:header("manage byu_events","",null,null,_headers)
+    byu_events = function(){
+      html:header("manage byu_events","")
       + <<
 <h1>Manage byu_events</h1>
 <form action="category.html">
@@ -30,12 +30,12 @@ ruleset byu.events {
 >>
       + html:footer()
     }
-    category = function(category,_headers){
+    category = function(category){
       loggit = (api_url+category).klog("URI")
       response = http:get(api_url+category).klog("response")
       content = response{"content"}.klog("content")
       events = content.decode()
-      html:header("see byu events by category","",null,null,_headers)
+      html:header("see byu events by category","")
       + <<
 <h1>See BYU events</h1>
 <h2>Category: #{nameFromId(category)}</h2>
@@ -50,9 +50,6 @@ ruleset byu.events {
 }).join("")}</dl>
 >>
       + html:footer()
-    }
-    byu_event = function(event_id,_headers){
-      "Not yet implemented"
     }
   }
   rule initialize {
