@@ -15,6 +15,7 @@ sends and receives notification with
   - id (optional) - a unique identifier that the event raiser chooses.
 Credit: <a href="https://www.windley.com/archives/2011/12/notifications_in_a_personal_event_networks.shtml">Notifications in Personal Event Networks</a>
 >>
+    use module io.picolabs.wrangler alias wrangler
     provides send_notification
   }
   global {
@@ -22,7 +23,7 @@ Credit: <a href="https://www.windley.com/archives/2011/12/notifications_in_a_per
       rid = meta:rid.klog("rid")
       app = application || rid
       level = priority || 0
-      eci = meta:eci.klog("eci")
+      eci = meta:eci.klog("eci") || wrangler:myself(){"eci"}
       event:send({"eci":eci,"domain":"notification","type":"status",
         "attributes":{
           "application":app,
