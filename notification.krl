@@ -26,7 +26,7 @@ Credit: <a href="https://www.windley.com/archives/2011/12/notifications_in_a_per
       eci = meta:eci.klog("eci")
         || wrangler:channels("system,self").head().get("id")
       event:send({"eci":eci,"domain":"notification","type":"status",
-        "attributes":{
+        "attrs":{
           "application":app,
           "subject":subject,
           "description":description ||
