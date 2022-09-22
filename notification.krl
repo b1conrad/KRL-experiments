@@ -19,9 +19,11 @@ Credit: <a href="https://www.windley.com/archives/2011/12/notifications_in_a_per
   }
   global {
     send_notification = defaction(application,subject,description,priority,id){
-      app = application || meta:rid
+      rid = meta:rid.klog("rid")
+      app = application || rid
       level = priority || 0
-      event:send({"eci":meta:eci,"domain":"notification","type":"status",
+      eci = meta:eci.klog("eci")
+      event:send({"eci":eci,"domain":"notification","type":"status",
         "attributes":{
           "application":app,
           "subject":subject,
