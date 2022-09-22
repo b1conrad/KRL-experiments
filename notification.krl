@@ -23,7 +23,8 @@ Credit: <a href="https://www.windley.com/archives/2011/12/notifications_in_a_per
       rid = meta:rid.klog("rid")
       app = application || rid
       level = priority || 0
-      eci = meta:eci.klog("eci") || wrangler:myself(){"eci"}
+      eci = meta:eci.klog("eci")
+        || wrangler:channels("system,self").head().get("id")
       event:send({"eci":eci,"domain":"notification","type":"status",
         "attributes":{
           "application":app,
