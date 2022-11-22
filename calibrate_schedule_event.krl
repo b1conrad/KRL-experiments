@@ -140,7 +140,7 @@ In <input type="number" min="1" name="how_many">
   rule dailyAtEight {
     select when calibrate_schedule_event eight_a_m
     fired {
-      schedule notification event "repeating_event"
+      schedule notification event "eight_a_m"
         repeat << 0 8 * * * >>  attributes { } setting(id)
       ent:id := id
     }
