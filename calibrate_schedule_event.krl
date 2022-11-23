@@ -60,7 +60,7 @@ type = v{"type"}
       html:header("event settings","",null,null,_headers)
       + <<
 <h1>Event Settings</h1>
-<h2>Set an event for 8 a.m. daily.</h2>
+<h2>Set an event for 8 a.m. MST daily.</h2>
 <form action="#{baseURL}/eight_a_m">
 <button type="submit">Set</button>
 </form>
@@ -141,7 +141,7 @@ In <input type="number" min="1" name="how_many">
     select when calibrate_schedule_event eight_a_m
     fired {
       schedule notification event "eight_a_m"
-        repeat << 0 8 * * * >>  attributes { } setting(id)
+        repeat << 0 15 * * * >>  attributes { } setting(id)
       ent:id := id
     }
   }
