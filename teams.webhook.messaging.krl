@@ -11,10 +11,10 @@ ruleset teams.webhook.messaging {
   rule sendMessage {
     select when byname_notification status
       application re#(org.picostack.get_me_ribs)#
-      subject re#Cannon Has (.+)#
+      subject re#(Cannon Has .+)#
       description re#(.+)#
       setting(app,subj,desc)
-    http:post(webhook,json={"text":desc}) setting(response)
+    http:post(webhook,json={"title":subj,"text":desc}) setting(response)
     fired {
       ent:latestResponse := response
     }
