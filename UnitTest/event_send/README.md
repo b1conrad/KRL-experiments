@@ -33,3 +33,16 @@ a subscription identifier instead of an event channel identifier (ECI).
 2. Install the [`test.event_send.sub`](https://raw.githubusercontent.com/b1conrad/KRL-experiments/main/UnitTest/event_send/test.event_send.sub.krl) ruleset
 3. Repeats steps 8 and 9 of the ECI test and the results should be the same
 
+## Difference between the two KRL rulesets
+
+```
+$ diff UnitTest/event_send/test.event_send.*
+1c1
+< ruleset test.event_send.eci {
+---
+> ruleset test.event_send.sub {
+14c14
+<     event:send({"eci":s{"Tx"},"eid":"none",
+---
+>     event:send({"sub":s{"Id"},"eid":"none",
+```
