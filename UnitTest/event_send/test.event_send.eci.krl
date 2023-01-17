@@ -11,7 +11,7 @@ ruleset test.event_send.eci {
   rule notifyRespondents {
     select when petitioner has_answered
     foreach subs:established().filter(resp) setting(s)
-    event:send({"eci":s.klog("s"){"Tx"},"eid":"none",
+    event:send({"eci":s{"Tx"},"eid":"none",
       "domain":"petitioner","type":"has_answered",
       "attrs":event:attrs},s{"Tx_host"})
   }
