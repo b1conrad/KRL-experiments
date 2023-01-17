@@ -1,12 +1,19 @@
 # event:send testing
 
 KRL includes a built-in `event` module.
-See documentation page "[event](https://picolabs.atlassian.net/wiki/spaces/docs/pages/1189929/event)".
+The module provides a `send` action
+(see documentation page "[event](https://picolabs.atlassian.net/wiki/spaces/docs/pages/1189929/event)").
 
-It has been suggested that an alternate form could allow the KRL programmer to specify
+It has been suggested that an alternate form of `event:send` could allow the KRL programmer to specify
 a subscription identifier instead of an event channel identifier (ECI).
 
-## Testing the use of an ECI in `event:send`
+## Tests
+
+First, a regression unit test to ensure that `event:send` works as presently constituted.
+Then, a TDD test to show that the new form doesn't work.
+This second test can double as a regression test, once the feature has been implemented.
+
+### Testing the use of an ECI in `event:send`
 
 1. Make a test pico named, say, "Try test.event_send.eci"
 2. Make a note of its wellKnown_Rx channel identifier (say, cld0li17e002ba5mbcq3l2q7k)
@@ -27,13 +34,13 @@ a subscription identifier instead of an event channel identifier (ECI).
 8. In Testing tab of test pico, select new channel, and click the `petitioner:has_answered` button
 9. Using the Logging tab, check to see that both related picos received the event and that no other pico has received it
 
-## Testing the use of a subscription identifier in `event:send`
+### Testing the use of a subscription identifier in `event:send`
 
 1. In Rulesets tab of test pico, delete the `test.event_send.eci` ruleset
 2. Install the [`test.event_send.sub`](https://raw.githubusercontent.com/b1conrad/KRL-experiments/main/UnitTest/event_send/test.event_send.sub.krl) ruleset
 3. Repeats steps 8 and 9 of the ECI test and the results should be the same
 
-## Difference between the two KRL rulesets
+### Difference between the two KRL rulesets
 
 ```
 $ diff UnitTest/event_send/test.event_send.*
