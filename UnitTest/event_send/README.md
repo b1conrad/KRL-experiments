@@ -38,9 +38,9 @@ This second test can double as a regression test, once the feature has been impl
 
 1. In Rulesets tab of test pico, delete the `test.event_send.eci` ruleset
 2. Install the [`test.event_send.sub`](https://raw.githubusercontent.com/b1conrad/KRL-experiments/main/UnitTest/event_send/test.event_send.sub.krl) ruleset
-3. Repeats steps 8 and 9 of the ECI test and the results should be the same
+3. Repeats steps 8 and 9 of the ECI test and the results should be the same, noting that is one of the other picos may be on a different host
 
-### Difference between the two KRL rulesets
+#### Difference between the two KRL rulesets
 
 ```
 $ diff UnitTest/event_send/test.event_send.*
@@ -52,4 +52,30 @@ $ diff UnitTest/event_send/test.event_send.*
 <     event:send({"eci":s{"Tx"},"eid":"none",
 ---
 >     event:send({"sub":s{"Id"},"eid":"none",
+```
+
+### Testing the use of an entire subscription map in `event:send`
+
+1. In Rulesets tab of test pico, delete the `test.event_send.sub` ruleset
+2. Install the [`test.event_send.sub_map`](https://raw.githubusercontent.com/b1conrad/KRL-experiments/main/UnitTest/event_send/test.event_send.sub_map.krl) ruleset
+3. Repeats steps 8 and 9 of the ECI test and the results should be the same, noting that is one of the other picos may be on a different host
+
+#### Differences between the two subscription-based KRL rulesets
+
+```
+$ diff UnitTest/event_send/test.event_send.sub*
+1c1
+< ruleset test.event_send.sub {
+---
+> ruleset test.event_send.sub_map {
+13,14c13,14
+<     foreach subs:established().filter(resp) setting(s)
+<     event:send({"sub":s{"Id"},"eid":"none",
+---
+>     foreach subs:established().filter(resp) setting(a_sub)
+>     event:send({"sub":a_sub,"eid":"none",
+16c16
+<       "attrs":event:attrs},s{"Tx_host"})
+---
+>       "attrs":event:attrs})
 ```
