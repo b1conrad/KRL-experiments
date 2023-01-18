@@ -12,12 +12,19 @@ a subscription identifier instead of an event channel identifier (ECI).
 The setup will be a test pico and two other picos to which it is related by subscription;
 the test pico will play the role of `"petitioner"` while the other picos will play the role of `"responder"`.
 
+A simple setup will look something like this:
+
+![simple setup](./subscriptions.png)
+
 ### Simple setup
 
 Create the test pico, make subscriptions between it and two other picos, and add a new channel for testing purposes.
 
 1. Make a test pico named, say, "Try test.event_send.sub"
-2. Make a note of its wellKnown_Rx channel identifier (say, cld0li17e002ba5mbcq3l2q7k)
+2. Make a note of its wellKnown_Rx channel identifier (say, cld0li17e002ba5mbcq3l2q7k) from the Channels tab or the Subscriptions tab (shown below)
+
+![wellKnown_Rx](./wellKnown_Rx.png)
+
 3. Choose two other picos, named whatever
 4. In each of their Subscriptions tabs, make a new subscription:
     1. wellKnown_Tx: the wellKnown_Rx of the test pico, e.x. cld0li17e002ba5mbcq3l2q7k
@@ -28,10 +35,17 @@ Create the test pico, make subscriptions between it and two other picos, and add
     6. Tx_host: leave blank
     7. password: leave blank
 5. In the Subscriptions tab of the test pico, accept both Inbound subscriptions
-6. In the Channels tab, create a new channel
+6. In the Channels tab, create a new channel, shown below
     1. Tagged test.event_send.eci
     2. Allowing event petitioner:has_answered
 
+![new channel](./newChannel.png)
+
+### More complex setup
+
+Have at least one of the picos be hosted by a pico engine running in a different domain and/or port.
+This would more fully test the `event:send` operations.
+But the first test wouldn't run as written, as the `host` argument would need to be known.
 
 ## Tests
 
