@@ -15,13 +15,13 @@ ruleset net.atlassian.picolabs.HTTP {
                 << <?xml encoding='UTF-8'?>
                    <feed version='0.3'>
                    </feed> >>,
-     headers = {"content-type": "application/xml"});
+     headers = {"content-type": "application/xml"})
   }
   rule r1_2 {
     select when web pageview url re#archives/(\d+)# setting(year) 
     http:post("http://www.example.com/go",
       form = {"answer": "x"},
-      autoraise = "example");
+      autoraise = "example")
   }
   rule r1_3 {
     select when web pageview url re#archives/(\d+)# setting(year) 
@@ -34,7 +34,7 @@ ruleset net.atlassian.picolabs.HTTP {
     select when http post 
                  label re#example#
                  status_code re#(2\d\d)# setting (status)
-    send_directive("Status", {"status":"Success! The status is " + status});
+    send_directive("Status", {"status":"Success! The status is " + status})
   }
    
   rule r3_5 {
@@ -42,13 +42,13 @@ ruleset net.atlassian.picolabs.HTTP {
                  label re#example#
                  status_code re#([45]\d\d)# setting (status)
     fired {
-      log error <<#{status}: #{event:attr("status_line")}>>;
-      last;
+      log error <<#{status}: #{event:attr("status_line")}>>
+      last
     }
   }
   rule r4_6 {
     select when http post label re#example#
     if(event:attr("content_type") like "^text/") then
-      send_directive("Page says...", {"content":event:attr("content")});
+      send_directive("Page says...", {"content":event:attr("content")})
   }
 }
