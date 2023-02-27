@@ -25,7 +25,7 @@ ruleset net.atlassian.picolabs.HTTP {
   }
   rule r1 {
     select when web pageview url re#archives/(\d+)# setting(year) 
-    http:post("http://www.example.com/go", form = {"answer": "x}) setting (resp)
+    http:post("http://www.example.com/go", form = {"answer": "x"}) setting (resp)
     always {
       raise explicit event "post" attributes resp
     }
