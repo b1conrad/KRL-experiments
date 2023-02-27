@@ -4,11 +4,11 @@ ruleset net.atlassian.picolabs.HTTP {
       Check sample KRL code in the documentation page.
     >>
   }
-  rule r1 {
+  rule r1_0 {
    select when web pageview url re#/archives/#
    http:post("http://www.example.com/go", form = {"answer": "x"})
   }
-  rule r2 {
+  rule r2_1 {
    select when web pageview url re#/archives/#
    http:post("https://example.com/printenv.pl",
      body =
@@ -17,27 +17,27 @@ ruleset net.atlassian.picolabs.HTTP {
                    </feed> >>,
      headers = {"content-type": "application/xml"});
   }
-  rule r1 {
+  rule r1_2 {
     select when web pageview url re#archives/(\d+)# setting(year) 
     http:post("http://www.example.com/go",
       form = {"answer": "x"},
       autoraise = "example");
   }
-  rule r1 {
+  rule r1_3 {
     select when web pageview url re#archives/(\d+)# setting(year) 
     http:post("http://www.example.com/go", form = {"answer": "x"}) setting (resp)
     always {
       raise explicit event "post" attributes resp
     }
   }
-  rule r2 {
+  rule r2_4 {
     select when http post 
                  label re#example#
                  status_code re#(2\d\d)# setting (status)
     send_directive("Status", {"status":"Success! The status is " + status});
   }
    
-  rule r3 {
+  rule r3_5 {
     select when http post
                  label re#example#
                  status_code re#([45]\d\d)# setting (status)
@@ -46,7 +46,7 @@ ruleset net.atlassian.picolabs.HTTP {
       last;
     }
   }
-  rule r4 {
+  rule r4_6 {
     select when http post label re#example#
     if(event:attr("content_type") like "^text/") then
       send_directive("Page says...", {"content":event:attr("content")});
