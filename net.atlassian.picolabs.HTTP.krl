@@ -19,7 +19,7 @@ ruleset net.atlassian.picolabs.HTTP {
   }
   rule r1 {
     select when web pageview url re#archives/(\d+)# setting(year) 
-    http:post("http://www.example.com/go"),
+    http:post("http://www.example.com/go",
       form = {"answer": "x"},
       autoraise = "example");
   }
