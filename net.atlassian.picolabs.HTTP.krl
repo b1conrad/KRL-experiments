@@ -5,7 +5,7 @@ ruleset net.atlassian.picolabs.HTTP {
     >>
   }
   rule r1 {
-   select when web pageview url #/archives/#
+   select when web pageview url re#/archives/#
    http:post("http://www.example.com/go", form = {"answer": "x"})
   }
   rule r2 {
