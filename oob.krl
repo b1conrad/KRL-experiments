@@ -7,7 +7,7 @@ ruleset oob {
   global {
     generate_invitation = function(label){
       parts = dcv2:generate_invitation(label).split("/invite?")
-      <<#{meta:host}/c/#{meta:eci}/query/oob/invite.html?#{parts[1]}>>
+      <<#{meta:host}/c/#{meta:eci}/query/#{meta:rid}/invite.html?#{parts[1]}>>
     }
     invite = function(_oob){
       json = _oob.math:base64decode().decode()
@@ -39,7 +39,7 @@ h1, h2, p, dt, dd {
   <body>
 <h1>DIDComm v2 out-of-band message</h1>
 <h2>Explanation</h2>
-<p>This URL is a DIDComm v2 out-of-band message.</p>
+<p>This URI is a DIDComm v2 out-of-band message.</p>
 <dl>
 <dt>type</dt><dd>#{json.get("type").split("/").reverse().head()}</dd>
 <dt>goal</dt><dd>#{json.get(["body","goal"])}</dd>
@@ -47,7 +47,7 @@ h1, h2, p, dt, dd {
 <dt>created</dt><dd>#{created}</dd>
 </dl>
 <h2>Call to action</h2>
-<p>To respond with a DIDComm v2 agent, copy/paste this URL:</p>
+<p>To respond with a DIDComm v2 agent, copy/paste this URI:</p>
 <textarea>http://www.example.com/invite?_oob=#{_oob}</textarea>
 <p>To respond with a DIDComm v2 wallet, scan this QR Code:</p>
 <div style="border:1px dashed silver;padding:5px;width:max-content"></div>
